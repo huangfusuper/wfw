@@ -1,0 +1,14 @@
+server:
+  port: 9000
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:3000/eureka,http://localhost:3001/eureka,http://localhost:3002/eureka #提供云端注册地址
+  instance:
+    instance-id: power-0 #注册到服务端唯一的实例ID
+    prefer-ip-address: true #是都显示ip
+    lease-renewal-interval-in-seconds: 10 #给服务端发送心跳 证明自己还活着间隔10s
+    lease-expiration-duration-in-seconds: 30 #服务器接收最后一次心跳多少秒后将服务剔除
+spring:
+  application:
+    name: power-client #显示在服务端的名字

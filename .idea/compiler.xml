@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="eureka3000" />
+        <module name="eureka3001" />
+        <module name="eureka3002" />
+        <module name="order" />
+        <module name="power" />
+        <module name="power1" />
+        <module name="user" />
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>
