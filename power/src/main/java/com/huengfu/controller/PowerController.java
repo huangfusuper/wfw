@@ -13,9 +13,10 @@ import java.util.Map;
 @RestController
 public class PowerController {
     @RequestMapping("/getPower.do")
-    public Object getPower(){
+    public Object getPower() throws Exception {
         Map<String,String> map = new HashMap<>();
         map.put("key", "getPower");
-        return map;
+        throw new Exception();
+        //return map;
     }
 }

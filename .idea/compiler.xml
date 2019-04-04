@@ -10,6 +10,7 @@
         <module name="eureka3001" />
         <module name="eureka3002" />
         <module name="order" />
+        <module name="order1" />
         <module name="power" />
         <module name="power1" />
         <module name="user" />

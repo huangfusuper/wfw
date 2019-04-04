@@ -8,7 +8,7 @@ eureka:
     hostname: 127.0.0.1
 
   client:
-    #register-with-eureka: true #不要把自己本身注册了
-    #fetch-registry: true #因为本身就是服务端所以不需要从服务端获取信息
+    register-with-eureka: false #不要把自己本身注册了
+    fetch-registry: false #因为本身就是服务端所以不需要从服务端获取信息
     service-url:
-      defaultZone: http://127.0.0.1:3001/eureka,http://127.0.0.1:3000/eureka
+      defaultZone: http://127.0.0.1:3001/eureka #,http://127.0.0.1:3000/eureka

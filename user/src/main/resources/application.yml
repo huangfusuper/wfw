@@ -3,7 +3,7 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone: http://127.0.0.1:3000/eureka/,http://127.0.0.1:3001/eureka/,http://127.0.0.1:3002/eureka/ #提供云端注册地址
+      defaultZone: http://127.0.0.1:3000/eureka/ #,http://127.0.0.1:3001/eureka/,http://127.0.0.1:3002/eureka/ #提供云端注册地址
   instance:
     instance-id: user-1 #注册到服务端唯一的实例ID
     prefer-ip-address: true #是都显示ip
@@ -12,3 +12,30 @@ eureka:
 spring:
   application:
     name: clent-user #显示在服务端的名字
+
+hystrix: #设置hystrix的超时退出，默认为一秒 设置为6秒 超时直接走方法降级
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 20000
+
+      circuitBreaker: #在默认时间10S内 调用5次api失败，会进行服务熔断，及不调用状态！此时的断路器处于半开状态，偶尔（默认五秒），试一下能否调用成功，此时如果调用成功，断路器会关闭
+        requestVolumeThreshold: 5
+        sleepWindowInMilliseconds: 5000 #如果断路器处于开启状态，间隔多少秒关闭一次，测试服务是否可用https://github.com/Netflix/Hystrix/wiki/Configuration#CommandCircuitBreaker
+
+    metrics: #10秒钟访问多少次会启动方法的断路器 默认值为10
+      rollingStats:
+        timeInMilliseconds: 10000
+
+  #threadpool:  #这里我是用配置文件的方式去配置线程
+    #default:  #这里是他的作用域 默认是全局  以局部为主
+      #coreSize: 1 #数量
+      #maxQueueSize: -1消息队列的数量，当线程池满了之后，并不会立即进入降级方法，会将多出的几个请求放置的消息队列等待线程释放填充
+    #power: #这里就是api里面指定的threadPoolKey的属性，以局部为主
+      #coreSize: 1 #数量
+
+feign: #开启feigen默认的断路器装置 以及方法降级 默认关闭
+  hystrix:
+    enabled: true

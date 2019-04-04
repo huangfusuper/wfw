@@ -32,12 +32,14 @@ public class AppConfig {
      * RandomRule随机
      * WeightedResponseTimeRule使用平均/百分位响应时间*的规则为每个服务器分配动态“权重”，然后以“加权循环”方式使用。
      * ZoneAvoidanceRule返回的“始终为真”谓词
+     * 如果要设置不同的服务使用不同的负载均衡策略，则需要将负载均衡器放置到SpringBoot的
+     * 扫描范围，在启动类上增加配置即可
      * @return
      */
-    @Bean
+    /*@Bean
     public IRule iRule(){
         return new RetryRule();
-    }
+    }*/
     /**
      * 设置端口 访问
      */

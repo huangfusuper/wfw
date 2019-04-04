@@ -2,15 +2,15 @@ server:
   port: 3000
 eureka:
   server:
-    #enable-self-preservation: false #关闭自我保护机制 当系统服务15分钟内85%以上不能用的时候Eureka会认为自己出来问题 此时不会去剔除服务同时 提供正常的注册和查询但不会同步到其他节点，直到网络波动恢复正常才会同步到其他节点 需要和客户端设置失效时间和心跳建个此时配合使用
-    #eviction-interval-timer-in-ms: 30 #默认90秒 每隔30秒清理一次已经失效的服务
+    enable-self-preservation: false #关闭自我保护机制 当系统服务15分钟内85%以上不能用的时候Eureka会认为自己出来问题 此时不会去剔除服务同时 提供正常的注册和查询但不会同步到其他节点，直到网络波动恢复正常才会同步到其他节点 需要和客户端设置失效时间和心跳建个此时配合使用
+    eviction-interval-timer-in-ms: 30000 #默认90秒 每隔30秒清理一次已经失效的服务
   instance:
     hostname: 127.0.0.1
 
   client:
-    #register-with-eureka: true #不要把自己本身注册了
-    #fetch-registry: true #因为本身就是服务端所以不需要从服务端获取信息
+    register-with-eureka: false #不要把自己本身注册了
+    fetch-registry: false #因为本身就是服务端所以不需要从服务端获取信息
     service-url:
       #进行集群搭建的时候可以不用注册自己，之注册集群服务
       #原因是本身的服务会在其他位置上注册  如果需要的话可以从其他服务上读取
-      defaultZone: http://127.0.0.1:3001/eureka,http://127.0.0.1:3002/eureka
+      defaultZone: http://127.0.0.1:3000/eureka #,http://127.0.0.1:3002/eureka
